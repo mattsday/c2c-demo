@@ -6,4 +6,5 @@ applications:
   buildpack: java_buildpack
   path: target/server-0.0.1-SNAPSHOT.jar
   services: [ c2c-registry ]
+  random-route: true
 
