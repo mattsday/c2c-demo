@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: c2c-server
+  cloud:
+    services:
+      registrationMethod: direct
+security:
+  basic:
+    enabled: false
+c2c:
+  client: C2C-CLIENT
