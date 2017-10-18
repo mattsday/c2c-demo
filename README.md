@@ -4,11 +4,15 @@ Pair of client/server apps to demonstrate C2C networking in Pivotal Cloud Foundr
 ## Requirements
 * PCF with container networking enabled (1.12 or later recommended)
 * Spring cloud services with service registry
+* Maven intalled (e.g. `brew install maven`)
 
 ## Information
 This is a pair of apps, a client and server that use Eureka's [direct registration method](http://docs.pivotal.io/spring-cloud-services/1-4/common/service-registry/writing-client-applications.html#register-using-c2c) to enable container-to-container networking.
 
 The server simply prints out whatever the client sends it, or an error if it cannot connect (e.g. the network is blocked).
+
+## Building
+Run the provided script `build.sh`.
 
 ## Set up
 Create a c2c service registry:
