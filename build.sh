@@ -6,7 +6,7 @@ if ! command -v mvn >/dev/null 2>&1; then
 	exit
 fi
 
-cd client && mvn -DskipTests package && cd ../server && mvn -DskipTests package && cd ..
+cd backend && mvn -DskipTests package && cd ../backend && mvn -DskipTests package && cd ..
 
 if [ $? -gt 0 ]; then
 	echo "Error(s) occured building"

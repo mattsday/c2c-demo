@@ -1,0 +1,10 @@
+---
+applications:
+- name: c2c-frontend
+  memory: 1024M
+  instances: 1
+  buildpack: java_buildpack
+  path: target/frontend-0.0.1-SNAPSHOT.jar
+  services: [ c2c-registry ]
+  random-route: true
+
