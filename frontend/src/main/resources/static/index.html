@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function getPing() {
+		$("#pingConnection").text("Loading...");
+		$.when($.ajax({
+			url : "/ping",
+			dataType : "text",
+			async : true
+		})).done(function(ping) {
+			populateConnectionBox(ping);
+		});
+	}
+	function populateConnectionBox(ping) {
+		$("#pingConnection").text(ping);
+	}
+
+	function getRemoteFrontend() {
+		$("#frontendRemoteConnection").text("Loading...");
+		url = $("#frontendurl").val();
+		$.when($.ajax({
+			url : "/remote/frontend?url=" + url,
+			dataType : "text",
+			async : true
+		})).done(function(remote) {
+			populateRemoteFrontendConnectionBox(remote);
+		});
+	}
+	function populateRemoteFrontendConnectionBox(ping) {
+		$("#frontendRemoteConnection").text(ping);
+	}
+
+	function getRemoteBackend() {
+		$("#backendRemoteConnection").text("Loading...");
+		url = $("#backendurl").val();
+		$.when($.ajax({
+			url : "/remote/backend?url=" + url,
+			dataType : "text",
+			async : true
+		})).done(function(remote) {
+			populateRemoteBackendConnectionBox(remote);
+		});
+	}
+	function populateRemoteBackendConnectionBox(ping) {
+		$("#backendRemoteConnection").text(ping);
+	}
+
+	$(document).ready(function() {
+		getPing();
+	});
+</script>
+
+</head>
+<body>
+	<h1>C2C Demo</h1>
+	<p>
+		Status: <span id="pingConnection">Loading...</span> <a href="javascript:getPing();">Refresh</a>
+	</p>
+	<p>
+		Test Remote URL from Frontend: <input type="text" id="frontendurl" /><input type="button" value="test" onclick="javascript:getRemoteFrontend()"> <span id="frontendRemoteConnection">Result</span>
+	</p>
+	<p>
+		Test Remote URL from Backend: <input type="text" id="backendurl" /><input type="button" value="test" onclick="javascript:getRemoteBackend()"> <span id="backendRemoteConnection">Result</span>
+	</p>
+</body>
+</html>

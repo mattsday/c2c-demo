@@ -29,7 +29,7 @@ $ pushd frontend && cf push && popd && pushd backend && cf push && popd
 
 Verify the backend app is working as intended by visiting it, for example:
 ```
-$ curl http://c2c-backend-random.cfapps.io
+$ curl http://c2c-backend-random.cfapps.io/ping
 ```
 
 It should print a bit of information about itself:
@@ -39,7 +39,7 @@ Remote hello from c2c-backend (IP: 10.240.155.75:8080)
 
 Now check the frontend:
 ```
-$ curl http://c2c-frontend-random.cfapps.io
+$ curl http://c2c-frontend-random.cfapps.io/ping
 ```
 
 It should return an error like this:
@@ -61,4 +61,9 @@ You can then disable the policy again if you like:
 ```
 cf remove-network-policy c2c-frontend --destination-app c2c-backend --port 8080 --protocol tcp
 ```
+## Advanced Testing
+There is a basic website available on the frontend component that allows a bit more advanced testing.
 
+You can initiate requests from the frontend or backend to arbitrary URLs. This can be used to test CNI integration from 3rd parties.
+
+For example, a lower level CNI policy may forbid the frontend app from accessing an external IP, but allow the backend to do so. This will allow you to test/verify.

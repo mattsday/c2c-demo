@@ -10,4 +10,4 @@ security:
   basic:
     enabled: false
 c2c:
-  client: C2C-BACKEND
+  backend: C2C-BACKEND
