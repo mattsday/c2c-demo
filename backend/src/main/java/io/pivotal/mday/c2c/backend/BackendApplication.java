@@ -23,7 +23,8 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@GetMapping("/ping")
+	// Respond to pings from the frontend app on both /ping and default URI
+	@GetMapping(value = { "/ping", "/" })
 	public String getMe() throws UnknownHostException {
 		return "Remote hello from " + environment.getProperty("spring.application.name") + " (IP: "
 				+ environment.getProperty("spring.cloud.client.ipAddress") + ":"
@@ -31,7 +32,7 @@ public class BackendApplication {
 	}
 
 	/*
-	 * Connect to a service directly (external to foundation)
+	 * Connect to a service directly (e.g. external to foundation)
 	 */
 	@GetMapping("/remote")
 	public String connectRemoteFrontend(String url) {
