@@ -14,6 +14,25 @@ The frontend simply prints out whatever the backend sends it, or an error if it 
 ## Building
 Run the provided script `build.sh`.
 
+## PCF Requirements
+You require the `network.write` permission in Cloud Foundry to make network changes. To do so:
+
+### Install the UAAC client
+```
+$ gem install cf-uaac
+```
+### Log in
+```
+$ uaac target uaa.sys.yourdomain.com
+$ uaac token client get admin -s MyAdminPassword
+```
+You can find your admin password in `Elastic Runtime -> Credentials -> Admin Client Credentials`
+### Add a user to the `network.write` group:
+```
+$ uaac member add network.write myuser
+```
+Note: `network.write` allows a user to modify networking on spaces where they are a developer, for foundation-wide network access use `network.admin` instead.
+
 ## Set up
 Create a c2c service registry:
 ```
