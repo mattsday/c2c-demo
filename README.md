@@ -46,6 +46,18 @@ Next push the backend and frontend apps:
 $ pushd frontend && cf push && popd && pushd backend && cf push && popd
 ```
 
+## Self-signed certificates
+If you're using self-signed certificates, Eureka registration won't work by default. To enable it, add your API server to the trust store:
+```
+$ cf set-env c2c-backend TRUST_CERTS api.apps.mydomain.com
+$ cf set-env c2c-frontend TRUST_CERTS api.apps.mydomain.com
+```
+Now restart the apps:
+```
+cf restart c2c-backend && cf restart c2c-frontend
+```
+
+## Verify everything is working
 Verify the backend app is working as intended by visiting it, for example:
 ```
 $ curl http://c2c-backend-random.cfapps.io/ping
@@ -66,6 +78,7 @@ It should return an error like this:
 Could not reach backend (networking problem?)
 ```
 
+## Enable C2C Networking
 Enable C2C networking between the apps:
 ```
 cf add-network-policy c2c-frontend --destination-app c2c-backend
