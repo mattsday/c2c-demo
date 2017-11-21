@@ -1,6 +1,8 @@
 # C2C PoC Code
 Pair of backend/frontend apps to demonstrate C2C networking in Pivotal Cloud Foundry
 
+![GUI Screenshot](screenshot.png)
+
 ## Requirements
 * PCF with container networking enabled (1.12 or later recommended)
 * Spring cloud services with service registry
